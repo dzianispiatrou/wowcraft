@@ -1,8 +1,9 @@
--- Define filters as constants
 local PURCHASE_FILTER = {
     all = IsItemFromList,
     mats = IsMat,
 }
+
+local sessionProfit = 0
 
 local function getBidAmount(i, overbidProtection)
     local _, _, count, _, _, _, minBid, minIncrement, buyoutPrice, bidAmount, highestBidder, _, _ = GetAuctionItemInfo("list", i)
