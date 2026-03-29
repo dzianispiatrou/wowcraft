@@ -104,4 +104,5 @@ MAT = {
     [2450] = 2500,  ---- briarthorn
     [3821] = 15000,  ---- goldthorn
     [72952] = 28.999999999999996,  --shatter rounds
+    [72953] = 0,  --arrows
 }
