@@ -22,3 +22,8 @@ SLASH_WOWCRAFT1 = "/wowcraft"
 SlashCmdList["WOWCRAFT"] = function()
     ShowWowcraftHelp()
 end
+
+SLASH_WOWCRAFTUI1 = "/wowcraftui"
+SlashCmdList["WOWCRAFTUI"] = function()
+    WowcraftUI_Toggle()
+end

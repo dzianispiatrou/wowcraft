@@ -11,4 +11,5 @@ util.lua
 auction\biddingQueue.lua
 auction\buy.lua
 auction\sell.lua
+ui.lua
 commands.lua

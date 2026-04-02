@@ -89,6 +89,7 @@ end)
 
 function ShowWowcraftHelp()
     print("|cff00ff00=== Wowcraft Commands ===|r")
+    print("|cffffaa00/wowcraftui|r - Toggle Wowcraft window (Buy / Sell tabs)")
     print("|cffffaa00/postitems|r - Post crafted items (48h)")
     print("|cffffaa00/buybidmats [overbidProtection]|r - Bid on materials")
     print("  bid = buylist_price / overbidProtection")
