@@ -1,39 +1,29 @@
-biddingQueue = {
-    data = {},
-    head = 1,
-    tail = 1,
-    maxSize = 50000
-}
+BiddingQueue = {first = 0, last = -1}
 
-function biddingQueue:Push(item)
-    if (self.tail - self.head) >= self.maxSize then
-        table.remove(self.data, 1)  -- Remove oldest if full
-        self.head = self.head + 1
-    end
-    self.data[self.tail] = item
-    self.tail = self.tail + 1
+function BiddingQueue.push(value)
+    local first = BiddingQueue.first - 1
+    BiddingQueue.first = first
+    BiddingQueue[first] = value
 end
 
-function biddingQueue:Pop()
-    if self.head >= self.tail then
-        return nil
-    end
-    local item = self.data[self.head]
-    self.data[self.head] = nil
-    self.head = self.head + 1
-    return item
+function BiddingQueue.pop()
+    local last = BiddingQueue.last
+    if BiddingQueue.first > last then return nil end
+    local value = BiddingQueue[last]
+    BiddingQueue[last] = nil
+    BiddingQueue.last = last - 1
+    return value
 end
 
-function biddingQueue:Reset()
-    biddingQueue.data = {}
-    biddingQueue.head = 1
-    biddingQueue.tail = 1
+function BiddingQueue.reset()
+    BiddingQueue.first = 0
+    BiddingQueue.last = -1
 end
 
 local frame = CreateFrame("FRAME")
 frame:RegisterEvent("CHAT_MSG_SYSTEM")
 frame:SetScript("OnEvent", function(self, event, message)
     if string.find(message, "Bid accepted.") then
-        print(biddingQueue:Pop())
+        print(BiddingQueue.pop())
     end
 end)

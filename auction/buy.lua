@@ -11,24 +11,18 @@ local function getBidAmount(i, overbidProtection)
     local itemId = tonumber(itemLink:match("item:(%d+):"))
     
     local itemCost = GetCost(itemId)
+    local maxPrice = itemCost * count
     local nextBid = math.max(minBid, bidAmount) + minIncrement
-    local nextBidCost = nextBid / count
     
-    local buyoutCost = buyoutPrice / count
-    
-    if 0 < buyoutCost and buyoutCost <= itemCost  then
+    if 0 < buyoutPrice and buyoutPrice <= maxPrice then
         return buyoutPrice
     end
     
-    if nextBidCost > itemCost then
+    if nextBid > maxPrice or highestBidder then
         return
     end
     
-    if highestBidder then
-        return
-    end
-    
-    local safeBid = count * itemCost / overbidProtection
+    local safeBid = maxPrice / overbidProtection
     
     if buyoutPrice == 0 then
         return math.max(safeBid, nextBid)
@@ -42,7 +36,7 @@ local function Buy(msg, filterType)
         return
     end
     
-    biddingQueue:Reset()
+    BiddingQueue.reset()
 
     local overbidProtection = tonumber(msg) or BID_INCREMENT_MULTIPLIER
     local numAuctionItems = GetNumAuctionItems("list")
@@ -57,9 +51,9 @@ local function Buy(msg, filterType)
             local amountToBid = getBidAmount(i, overbidProtection)
             
             if amountToBid then
-                biddingQueue:Push(string.format("%s: [%d] x [%s] = [%s] from [%s]", 
+                BiddingQueue.push(string.format("%s: [%d] x [%s] = [%s] from [%s]", 
                     itemLink, count, GetMoneyString(amountToBid / count), 
-                    GetMoneyString(amountToBid), owner or "noname"))
+                    GetMoneyString(amountToBid), owner or ""))
                 PlaceAuctionBid("list", i, amountToBid)
             end
         end
@@ -79,7 +73,7 @@ function BuyToVendor()
         return
     end
     
-    biddingQueue:Reset()
+    BiddingQueue.reset()
     
     local numAuctionItems = GetNumAuctionItems("list")
     
@@ -90,7 +84,7 @@ function BuyToVendor()
         local _, _, count, _, _, _, _, _, buyoutPrice, _, _, owner, _ = GetAuctionItemInfo("list", i)
         
         if buyoutPrice > 0 and vendorPrice > 0 and vendorPrice * count >= buyoutPrice then
-            biddingQueue:Push(string.format("%s: [%d] x [%s] = [%s] from [%s] profit [%s]", itemLink, count, GetMoneyString(buyoutPrice / count), GetMoneyString(buyoutPrice), owner or "noname", GetMoneyString(vendorPrice * count - buyoutPrice)))
+            BiddingQueue.push(string.format("%s: [%d] x [%s] = [%s] from [%s] profit [%s]", itemLink, count, GetMoneyString(buyoutPrice / count), GetMoneyString(buyoutPrice), owner or "noname", GetMoneyString(vendorPrice * count - buyoutPrice)))
             PlaceAuctionBid("list", i, buyoutPrice)
         end
     end
