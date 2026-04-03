@@ -11,6 +11,7 @@ local BUY_MODE_LABELS = {
 
 local tabButtons -- { Buy, Sell, Buylist }
 local buylistRows = {} -- row buttons for MAT buylist
+local MAT_SORTED_LIST = nil
 
 local function WowcraftBuyDropDown_Initialize()
     local function add(text, value)
@@ -31,9 +32,17 @@ end
 local function TabSetSelected(selectedIndex)
     for i, tab in ipairs(tabButtons) do
         if i == selectedIndex then
-            tab:LockHighlight()
+            tab.isSelected = true
+            tab:SetBackdropColor(0.16, 0.16, 0.18, 1)
+            tab:SetBackdropBorderColor(0.65, 0.65, 0.70, 1)
+            tab.label:SetTextColor(1, 1, 1)
+            tab:SetPoint("BOTTOMLEFT", tab:GetParent(), "TOPLEFT", tab.baseX, -20)
         else
-            tab:UnlockHighlight()
+            tab.isSelected = false
+            tab:SetBackdropColor(0.08, 0.08, 0.09, 0.95)
+            tab:SetBackdropBorderColor(0.35, 0.35, 0.38, 0.9)
+            tab.label:SetTextColor(0.80, 0.80, 0.85)
+            tab:SetPoint("BOTTOMLEFT", tab:GetParent(), "TOPLEFT", tab.baseX, -22)
         end
     end
 end
@@ -88,14 +97,34 @@ end
 local function CreateTabButton(parent, globalName, id, label, x, y)
     local b = CreateFrame("Button", globalName, parent)
     b:SetID(id)
-    b:SetSize(76, 26)
+    b:SetSize(82, 26)
+    b.baseX = x
     b:SetPoint("BOTTOMLEFT", parent, "TOPLEFT", x, y)
-    b:SetNormalTexture("Interface\\Buttons\\UI-Panel-Button-Up")
-    b:SetPushedTexture("Interface\\Buttons\\UI-Panel-Button-Down")
-    b:SetHighlightTexture("Interface\\Buttons\\UI-Panel-Button-Highlight")
+    b:SetBackdrop({
+        bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+        tile = true,
+        tileSize = 16,
+        edgeSize = 12,
+        insets = { left = 3, right = 3, top = 3, bottom = 3 },
+    })
+    b:SetBackdropColor(0.08, 0.08, 0.09, 0.95)
+    b:SetBackdropBorderColor(0.35, 0.35, 0.38, 0.9)
+
     local fs = b:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    fs:SetPoint("CENTER", b, "CENTER", 0, 2)
+    fs:SetPoint("CENTER", b, "CENTER", 0, 0)
     fs:SetText(label)
+    b.label = fs
+
+    b:SetScript("OnMouseDown", function(self)
+        self:SetBackdropColor(0.12, 0.12, 0.14, 1)
+    end)
+    b:SetScript("OnMouseUp", function(self)
+        -- Selection styling is restored by TabSetSelected() on click handlers.
+        if not self.isSelected then
+            self:SetBackdropColor(0.08, 0.08, 0.09, 0.95)
+        end
+    end)
     return b
 end
 
@@ -127,6 +156,24 @@ local function CreateSimpleScrollFrame(parent, width, height)
     return sf, content
 end
 
+local function UpdateBuylistScrollBar(scroll, scrollContent, slider)
+    local maxScroll = math.max(0, scrollContent:GetHeight() - scroll:GetHeight())
+    slider:SetMinMaxValues(0, maxScroll)
+    slider:SetValueStep(1)
+    if maxScroll <= 0 then
+        slider:Hide()
+        slider:SetValue(0)
+        scroll:SetVerticalScroll(0)
+    else
+        slider:Show()
+        local current = scroll:GetVerticalScroll()
+        if current > maxScroll then
+            current = maxScroll
+        end
+        slider:SetValue(current)
+    end
+end
+
 local function BuildMatSortedList()
     local list = {}
     if not MAT then
@@ -141,6 +188,48 @@ local function BuildMatSortedList()
     return list
 end
 
+local function LayoutBuylistRows(scroll, scrollContent, scrollBar, scrollRightMargin)
+    if not WowcraftFrame or not WowcraftBuylistPanel then
+        return
+    end
+
+    local buylistPanel = WowcraftBuylistPanel
+    local header = buylistPanel.headerText
+    if not header then
+        return
+    end
+
+    local panelW = buylistPanel:GetWidth()
+    local panelH = buylistPanel:GetHeight()
+    local listTopY = -34
+    local scrollX = 0
+    local availableW = math.max(260, panelW - scrollRightMargin)
+    local availableH = math.max(90, panelH - 42)
+    local rowH = 36
+
+    scroll:ClearAllPoints()
+    scroll:SetPoint("TOPLEFT", buylistPanel, "TOPLEFT", scrollX, listTopY)
+    scroll:SetSize(availableW, availableH)
+
+    scrollBar:ClearAllPoints()
+    scrollBar:SetPoint("TOPLEFT", scroll, "TOPRIGHT", 6, 0)
+    scrollBar:SetPoint("BOTTOMLEFT", scroll, "BOTTOMRIGHT", 6, 0)
+
+    local rowWidth = availableW - 12
+    for i, row in ipairs(buylistRows) do
+        row:ClearAllPoints()
+        row:SetSize(rowWidth, rowH - 2)
+        row:SetPoint("TOPLEFT", scrollContent, "TOPLEFT", 4, -(i - 1) * rowH)
+        row.nameFs:ClearAllPoints()
+        row.nameFs:SetPoint("LEFT", row.icon, "RIGHT", 8, 0)
+        row.nameFs:SetPoint("RIGHT", row, "RIGHT", -120, 0)
+    end
+
+    scrollContent:SetWidth(math.max(100, availableW - 8))
+    scrollContent:SetHeight(math.max(1, #buylistRows * rowH + 8))
+    UpdateBuylistScrollBar(scroll, scrollContent, scrollBar)
+end
+
 local function CreateMainFrame()
     local f = CreateFrame("Frame", "WowcraftFrame", UIParent)
     f:SetSize(400, 300)
@@ -152,6 +241,9 @@ local function CreateMainFrame()
     f:SetScript("OnDragStop", f.StopMovingOrSizing)
     f:SetFrameStrata("DIALOG")
     f:SetFrameLevel(10)
+    f:SetResizable(true)
+    f:SetMinResize(380, 280)
+    f:SetMaxResize(900, 700)
     f:Hide()
 
     f:SetBackdrop({
@@ -164,6 +256,19 @@ local function CreateMainFrame()
     })
     f:SetBackdropColor(0, 0, 0, 1)
 
+    local resizeBtn = CreateFrame("Button", nil, f)
+    resizeBtn:SetSize(16, 16)
+    resizeBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -6, 6)
+    resizeBtn:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+    resizeBtn:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
+    resizeBtn:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
+    resizeBtn:SetScript("OnMouseDown", function()
+        f:StartSizing("BOTTOMRIGHT")
+    end)
+    resizeBtn:SetScript("OnMouseUp", function()
+        f:StopMovingOrSizing()
+    end)
+
     local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     title:SetPoint("TOP", f, "TOP", 0, -16)
     title:SetText("Wowcraft")
@@ -171,10 +276,10 @@ local function CreateMainFrame()
     local tabBuy = CreateTabButton(f, "WowcraftFrameTab1", 1, "Buy", 12, -22)
     tabBuy:SetScript("OnClick", SelectBuyTab)
 
-    local tabSell = CreateTabButton(f, "WowcraftFrameTab2", 2, "Sell", 90, -22)
+    local tabSell = CreateTabButton(f, "WowcraftFrameTab2", 2, "Sell", 94, -22)
     tabSell:SetScript("OnClick", SelectSellTab)
 
-    local tabBuylist = CreateTabButton(f, "WowcraftFrameTab3", 3, "Buylist", 168, -22)
+    local tabBuylist = CreateTabButton(f, "WowcraftFrameTab3", 3, "Buylist", 176, -22)
     tabBuylist:SetScript("OnClick", SelectBuylistTab)
 
     tabButtons = { tabBuy, tabSell, tabBuylist }
@@ -264,14 +369,48 @@ local function CreateMainFrame()
     buylistHint:SetPoint("TOPLEFT", buylistPanel, "TOPLEFT", 0, 0)
     buylistHint:SetWidth(360)
     buylistHint:SetJustifyH("LEFT")
-    buylistHint:SetText("Buylist (|cffffaa00MAT|r): scroll with mouse wheel. Prices are per-unit buylist (copper).")
+    buylistHint:SetText("Buylist (|cffffaa00MAT|r): shift+left click to link, mouse wheel or scrollbar drag to scroll.")
+    buylistPanel.headerText = buylistHint
 
-    local scrollW, scrollH = 352, 210
+    local scrollW, scrollH = 334, 210
     local scroll, scrollContent = CreateSimpleScrollFrame(buylistPanel, scrollW, scrollH)
     scroll:SetPoint("TOPLEFT", buylistHint, "BOTTOMLEFT", 0, -6)
+    scroll:SetPoint("BOTTOMLEFT", buylistPanel, "BOTTOMLEFT", 0, 0)
+
+    local scrollBar = CreateFrame("Slider", "WowcraftBuylistScrollBar", buylistPanel)
+    scrollBar:SetOrientation("VERTICAL")
+    scrollBar:SetPoint("TOPLEFT", scroll, "TOPRIGHT", 8, 0)
+    scrollBar:SetPoint("BOTTOMLEFT", scroll, "BOTTOMRIGHT", 8, 0)
+    scrollBar:SetWidth(16)
+    scrollBar:SetThumbTexture("Interface\\Buttons\\UI-ScrollBar-Knob")
+    scrollBar:SetBackdrop({
+        bgFile = "Interface\\Buttons\\UI-SliderBar-Background",
+        edgeFile = "Interface\\Buttons\\UI-SliderBar-Border",
+        tile = true,
+        tileSize = 8,
+        edgeSize = 8,
+        insets = { left = 2, right = 2, top = 2, bottom = 2 },
+    })
+    scrollBar:SetScript("OnValueChanged", function(self, value)
+        scroll:SetVerticalScroll(value)
+    end)
+
+    scroll:SetScript("OnVerticalScroll", function(self, offset)
+        self:SetVerticalScroll(offset)
+        scrollBar:SetValue(offset)
+    end)
+
+    local oldMouseWheel = scroll:GetScript("OnMouseWheel")
+    scroll:SetScript("OnMouseWheel", function(self, delta)
+        if oldMouseWheel then
+            oldMouseWheel(self, delta)
+        end
+        scrollBar:SetValue(self:GetVerticalScroll())
+    end)
 
     local rowH = 36
-    local matList = BuildMatSortedList()
+    MAT_SORTED_LIST = MAT_SORTED_LIST or BuildMatSortedList()
+    local matList = MAT_SORTED_LIST
     wipe(buylistRows)
 
     for i, entry in ipairs(matList) do
@@ -312,12 +451,22 @@ local function CreateMainFrame()
         row:SetScript("OnLeave", function()
             GameTooltip:Hide()
         end)
+        row:RegisterForClicks("LeftButtonUp")
+        row:SetScript("OnClick", function(self, button)
+            if button ~= "LeftButton" or not IsShiftKeyDown() then
+                return
+            end
+            local itemLink = select(2, GetItemInfo(self.itemId))
+            if itemLink and ChatEdit_InsertLink then
+                ChatEdit_InsertLink(itemLink)
+            end
+        end)
 
         tinsert(buylistRows, row)
         RefreshBuylistRow(row)
     end
 
-    scrollContent:SetHeight(math.max(1, #matList * rowH + 8))
+    LayoutBuylistRows(scroll, scrollContent, scrollBar, 26)
 
     -- 3.3.5 has no item-cache callback; refresh a few times after opening tab so icons/names fill in.
     buylistPanel:SetScript("OnUpdate", function(self, elapsed)
@@ -335,12 +484,17 @@ local function CreateMainFrame()
         self._elapsed = 0
         self._buylistRefreshLeft = left - 1
         RefreshBuylistPanel()
+        UpdateBuylistScrollBar(scroll, scrollContent, scrollBar)
     end)
 
     f:SetScript("OnShow", function()
         SelectBuyTab()
         UIDropDownMenu_Initialize(dropDown, WowcraftBuyDropDown_Initialize)
         UIDropDownMenu_SetText(dropDown, BUY_MODE_LABELS[WowcraftUI.buyMode])
+    end)
+
+    f:SetScript("OnSizeChanged", function()
+        LayoutBuylistRows(scroll, scrollContent, scrollBar, 26)
     end)
 
     return f
