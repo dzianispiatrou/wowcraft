@@ -10,7 +10,7 @@ local function getBidAmount(i, overbidProtection)
     local itemLink = GetAuctionItemLink("list", i)
     local itemId = tonumber(itemLink:match("item:(%d+):"))
     
-    local itemCost = GetCost(itemId)
+    local _, itemCost = GetCost(itemId)
     local maxPrice = itemCost * count
     local nextBid = math.max(minBid, bidAmount) + minIncrement
     
@@ -51,6 +51,10 @@ local function Buy(msg, filterType)
             local amountToBid = getBidAmount(i, overbidProtection)
             
             if amountToBid then
+            local itemInfo = {
+                link = itemLink,
+                count = c
+            }
                 BiddingQueue.push(string.format("%s: [%d] x [%s] = [%s] from [%s]", 
                     itemLink, count, GetMoneyString(amountToBid / count), 
                     GetMoneyString(amountToBid), owner or ""))

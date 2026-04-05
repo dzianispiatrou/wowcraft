@@ -1,5 +1,3 @@
-
-
 local DURATION = 3  -- 3 = 48 hours
 
 -- Function to post BoE items from bags
@@ -14,7 +12,8 @@ function PostItems()
                 local itemId = GetItemInfoFromHyperlink(itemLink)
                 
                 if not IsMat(itemId) and IsProfessionItem(itemId) then
-                    local price = GetCost(itemId) / AH_CUT_MULTIPLIER
+                    local _, cost = GetCost(itemId)
+                    price = cost / AH_CUT_MULTIPLIER
                     local _, itemCount, _, _, _, _, _ = GetContainerItemInfo(bag, slot)
                     local stackSize = 1
                     local randomProfit = math.random(0,10000)

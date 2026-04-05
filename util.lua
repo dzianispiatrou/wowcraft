@@ -35,19 +35,27 @@ function GetCost(itemId)
     
     if IsMat(itemId) then
         cost = MAT[itemId]
+        return "BUYLIST", cost
     elseif IsProfessionItem(itemId) then
         local recipe = LeatherworkingDB[itemId] or TailoringDB[itemId] or BlacksmithingDB[itemId] or JewelcraftingDB[itemId]
         
         for matId, quantity in pairs(recipe) do
-            cost = cost + GetCost(matId) * quantity
+            local source, matCost = GetCost(matId)
+            
+            if source == "VENDOR" then
+                local _, _, _, _, _, _, _, _, _, _, vendorPrice = GetItemInfo(itemId)
+                return "VENDOR", vendorPrice
+            end
+            cost = cost + matCost * quantity
         end
+        return "PROFESSION", cost
     end
-    
-    return cost
+    local _, _, _, _, _, _, _, _, _, _, vendorPrice = GetItemInfo(itemId)
+    return "VENDOR", vendorPrice
 end
 
 local function AddNonProfitPriceToTooltip(tooltip, itemId)
-    local cost = GetCost(itemId)
+    local source, cost = GetCost(itemId)
     local price = cost / AH_CUT_MULTIPLIER
     local formattedCost = GetCoinTextureString(cost)
     local formattedPrice = GetCoinTextureString(price)
@@ -55,6 +63,7 @@ local function AddNonProfitPriceToTooltip(tooltip, itemId)
     tooltip:AddLine("ID: "..itemId, 1, 1, 1)
     tooltip:AddLine("COST: "..formattedCost, 1, 1, 1)
     tooltip:AddLine("NONPROFIT: "..formattedPrice, 1, 1, 1)
+    tooltip:AddLine("SOURCE: "..source,1 ,1 , 1)
     tooltip:Show()
 end
 
