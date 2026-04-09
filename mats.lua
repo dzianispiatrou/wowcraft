@@ -33,7 +33,7 @@ MAT = {
     [36905] = 265000,  --Lichbloom
     [36903] = 200000,  -- Adder's Tongue
     [36906] = 32000,  --Icethorn
-    [40195] = 15000,  --#VALUE!
+    [40195] = 15000,  --https://wotlk.cavernoftime.com/item=40195
     [40199] = 20000,  --
     [33567] = 4000,  --Borean Leather Scraps
     [33568] = 20000,  --Borean Leather
