@@ -36,7 +36,7 @@ MAT = {
     [36903] = 200000,  -- Adder's Tongue
     [36906] = 32000,  --Icethorn
     [40195] = 15000,  --Pygmy Oil
-    [40199] = 20000,  --wowhead.com/item=40199
+    [40199] = 20000,  --Pygmy Suckerfish
     [33567] = 4000,  --Borean Leather Scraps
     [33568] = 20000,  --Borean Leather
     [38425] = 120000,  --Heavy Borean Leather
