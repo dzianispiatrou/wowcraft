@@ -31,7 +31,7 @@ MAT = {
     [34056] = 20000,  --Lesser Cosmic Essence
     [36908] = 380000,  --Frost Lotus
     [36905] = 265000,  --Lichbloom
-    [36903] = 150000,  -- Adder's Tongue
+    [36903] = 200000,  -- Adder's Tongue
     [36906] = 32000,  --Icethorn
     [40195] = 15000,  --wowhead.com/item=40195
     [40199] = 20000,  --wowhead.com/item=40199
