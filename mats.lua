@@ -17,6 +17,7 @@ MAT = {
     [36912] = 32174.999999999996,  --Saronite Ore
     [37663] = 2010000,  --Titansteel Bar
     [36909] = 25000,  --Cobalt Ore
+    [36916] = 0,  --Cobalt Bar
     [33470] = 8000,  --Frostweave Cloth
     [41510] = 40000,  --Bolt of Frostweave
     [41511] = 160000,  --Bolt of Imbued Frostweave
