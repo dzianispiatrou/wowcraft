@@ -109,5 +109,5 @@ MAT = {
     [3821] = 15000,  ---- goldthorn
     [52020] = 28.999999999999996,  --shatter rounds
     [52021] = 54.5,  --arrows
-    [33448] = 0,  --
+    [33448] = 0,  --Runic Mana Potion
 }
