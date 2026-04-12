@@ -64,8 +64,8 @@ local function Buy(msg, filterType)
             local amountToBid = getBidAmount(itemId, itemInfo, overbidProtection)
             
             if amountToBid then
-                BiddingQueue.push(string.format("%s: [%d] x [%s] = [%s] from [%s]", 
-                    itemLink, itemInfo.count, GetMoneyString(amountToBid / itemInfo.count), 
+                BiddingQueue.push(string.format("[%d] - %s: [%d] x [%s] = [%s] from [%s]", 
+                    i, itemLink, itemInfo.count, GetMoneyString(amountToBid / itemInfo.count), 
                     GetMoneyString(amountToBid), itemInfo.owner or ""))
                 PlaceAuctionBid("list", i, amountToBid)
             end
@@ -114,8 +114,8 @@ function BuyToVendor()
             local reason, cost = GetCost(itemId)
             
             if amountToBid and reason == "VENDOR" then
-                BiddingQueue.push(string.format("%s: [%d] x [%s] = [%s] from [%s]", 
-                    itemLink, itemInfo.count, GetMoneyString(amountToBid / itemInfo.count), 
+                BiddingQueue.push(string.format("[%d] - %s: [%d] x [%s] = [%s] from [%s]", 
+                    i, itemLink, itemInfo.count, GetMoneyString(amountToBid / itemInfo.count), 
                     GetMoneyString(amountToBid), itemInfo.owner or ""))
                 PlaceAuctionBid("list", i, amountToBid)
             end
