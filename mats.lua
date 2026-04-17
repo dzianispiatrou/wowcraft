@@ -107,7 +107,5 @@ MAT = {
     [41805] = 25000,  ---- manowar
     [2450] = 2500,  ---- briarthorn
     [3821] = 15000,  ---- goldthorn
-    [52020] = 28.999999999999996,  --shatter rounds
-    [52021] = 55,  --arrows
     [33448] = 100000,  --Runic Mana Potion
 }
