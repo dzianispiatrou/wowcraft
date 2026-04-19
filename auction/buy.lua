@@ -6,10 +6,6 @@ local PURCHASE_FILTER = {
 local sessionProfit = 0
 
 local function getBidAmount(itemId, itemInfo, overbidProtection)
-    --local _, _, count, _, _, _, minBid, minIncrement, buyoutPrice, bidAmount, highestBidder, _, _ = GetAuctionItemInfo("list", i)
-    --local itemLink = GetAuctionItemLink("list", i)
-    --local itemId = tonumber(itemLink:match("item:(%d+):"))
-    
     local _, itemCost = GetCost(itemId)
     local maxPrice = itemCost * itemInfo.count
     local nextBid = math.max(itemInfo.minBid, itemInfo.bidAmount) + itemInfo.minIncrement
@@ -29,6 +25,77 @@ local function getBidAmount(itemId, itemInfo, overbidProtection)
     end
     
     return math.max(math.min(safeBid, itemInfo.buyoutPrice / BID_INCREMENT_MULTIPLIER), nextBid)
+end
+
+function EstimateProfit()
+    if not AuctionFrame or not AuctionFrame:IsShown() then
+        return
+    end
+    
+    local totalCost = 0
+    local totalPrice = 0
+    local totalBidCost = 0
+    local totalBidPrice = 0
+    local numAuctionItems = GetNumAuctionItems("list")
+    
+    for i = 1, numAuctionItems do
+        local itemLink = GetAuctionItemLink("list", i)
+        local itemId = tonumber(itemLink:match("item:(%d+):"))
+        
+        if IsMat(itemId) then
+            local itemInfo = {}
+            itemInfo.name, 
+            itemInfo.texture, 
+            itemInfo.count,
+            itemInfo.quality, 
+            itemInfo.canUse, 
+            itemInfo.level, 
+            itemInfo.minBid, 
+            itemInfo.minIncrement, 
+            itemInfo.buyoutPrice, 
+            itemInfo.bidAmount, 
+            itemInfo.highestBidder, 
+            itemInfo.owner, 
+            itemInfo.sold = GetAuctionItemInfo("list", i)
+            local _, cost = GetCost(itemId)
+            local maxPrice = cost * itemInfo.count
+            
+            if 0 < itemInfo.buyoutPrice and itemInfo.buyoutPrice <= maxPrice then
+                totalCost = totalCost + cost * itemInfo.count
+                totalPrice = totalPrice + itemInfo.buyoutPrice
+            else
+                local amountToBid = getBidAmount(itemId, itemInfo, 1.025)
+                
+                if amountToBid then
+                    totalBidPrice = totalBidPrice + amountToBid
+                    totalBidCost = totalBidCost + cost * itemInfo.count
+                end
+            end
+        end
+    end
+    
+    local totalProfit = totalCost - totalPrice
+    local profitInPercentages = 0
+    
+    if totalPrice ~= 0 then
+        profitInPercentages = totalProfit * 100.0 / totalPrice
+    end
+    print(format("AH PRICE: [%s] CARTEL PRICE: [%s] PROFIT: [%s] (%f%s)", GetMoneyString(totalPrice), GetMoneyString(totalCost), GetMoneyString(totalProfit), profitInPercentages, "%"))
+    
+    
+    local totalBidProfit = totalBidCost - totalBidPrice
+    local bidProfitInPercentages = 0
+    
+    if totalBidPrice ~= 0 then
+        bidProfitInPercentages = totalBidProfit * 100.0 / totalBidPrice
+    end
+    print(format("AH BID PRICE: [%s] CARTEL PRICE: [%s] PROFIT: [%s] (%f%s)", GetMoneyString(totalBidPrice), GetMoneyString(totalBidCost), GetMoneyString(totalBidProfit), bidProfitInPercentages, "%"))
+    local moneyLeft = GetMoney()-totalBidPrice-totalPrice
+    if moneyLeft >= 0 then
+        print(GetMoneyString(moneyLeft))
+    else
+        print(moneyLeft)
+    end
 end
 
 local function Buy(msg, filterType)

@@ -27,3 +27,8 @@ SLASH_WOWCRAFTUI1 = "/wowcraftui"
 SlashCmdList["WOWCRAFTUI"] = function()
     WowcraftUI_Toggle()
 end
+
+SLASH_ESTIMATE1 = "/estimate"
+SlashCmdList["ESTIMATE"] = function()
+    EstimateProfit()
+end
