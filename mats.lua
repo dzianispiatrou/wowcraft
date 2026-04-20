@@ -109,5 +109,5 @@ MAT = {
     [3821] = 15000,  ---- goldthorn
     [33448] = 100000,  --Runic Mana Potion
     [10286] = 65000,  --heart of the wild
-    [13467] = 0,  --icecap
+    [13467] = 50000,  --icecap
 }
