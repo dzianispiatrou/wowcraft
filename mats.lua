@@ -110,5 +110,5 @@ MAT = {
     [33448] = 100000,  --Runic Mana Potion
     [10286] = 65000,  --heart of the wild
     [13467] = 50000,  --icecap
-    [13465] = 0,  --
+    [13465] = 0,  --Mountain Silversage
 }
