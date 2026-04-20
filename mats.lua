@@ -33,7 +33,7 @@ MAT = {
     [34056] = 20000,  --Lesser Cosmic Essence
     [36908] = 380000,  --Frost Lotus
     [36905] = 262500,  --Lichbloom
-    [36903] = 211000,  -- Adder's Tongue
+    [36903] = 205000,  -- Adder's Tongue
     [36906] = 32000,  --Icethorn
     [40195] = 19000,  --Pygmy Oil
     [40199] = 20000,  --Pygmy Suckerfish
@@ -108,4 +108,7 @@ MAT = {
     [2450] = 2500,  ---- briarthorn
     [3821] = 15000,  ---- goldthorn
     [33448] = 100000,  --Runic Mana Potion
+    [10286] = 65000,  --heart of the wild
+    [13467] = 50000,  --icecap
+    [13465] = 65000,  --Mountain Silversage
 }
