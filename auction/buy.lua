@@ -94,7 +94,7 @@ function EstimateProfit()
     if moneyLeft >= 0 then
         print(GetMoneyString(moneyLeft))
     else
-        print(moneyLeft)
+        print(format("-%s", GetMoneyString(-moneyLeft)))
     end
 end
 
