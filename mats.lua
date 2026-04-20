@@ -108,5 +108,5 @@ MAT = {
     [2450] = 2500,  ---- briarthorn
     [3821] = 15000,  ---- goldthorn
     [33448] = 100000,  --Runic Mana Potion
-    [10286] = 0,  --
+    [10286] = 0,  --heart of the wild
 }
