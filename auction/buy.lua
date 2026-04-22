@@ -5,6 +5,8 @@ local PURCHASE_FILTER = {
 
 local sessionProfit = 0
 
+currentItemIndex = 1
+
 local function getBidAmount(itemId, itemInfo, overbidProtection)
     local _, itemCost = GetCost(itemId)
     local maxPrice = itemCost * itemInfo.count
@@ -188,3 +190,62 @@ function BuyToVendor()
             end
     end
 end
+
+function OneClickOneBid(msg)
+    if not AuctionFrame or not AuctionFrame:IsShown() then
+        return
+    end
+    
+    BiddingQueue.reset()
+
+    local overbidProtection = tonumber(msg) or BID_INCREMENT_MULTIPLIER
+    local numAuctionItems = GetNumAuctionItems("list")
+    local filterFunc = IsMat
+    
+    --for i = 1, numAuctionItems do
+        local itemLink = GetAuctionItemLink("list", currentItemIndex)
+        local itemId = tonumber(itemLink:match("item:(%d+):"))
+        
+        if filterFunc(itemId) then
+            local itemInfo = {}
+            itemInfo.name, 
+            itemInfo.texture, 
+            itemInfo.count,
+            itemInfo.quality, 
+            itemInfo.canUse, 
+            itemInfo.level, 
+            itemInfo.minBid, 
+            itemInfo.minIncrement, 
+            itemInfo.buyoutPrice, 
+            itemInfo.bidAmount, 
+            itemInfo.highestBidder, 
+            itemInfo.owner, 
+            itemInfo.sold = GetAuctionItemInfo("list", currentItemIndex)
+            local amountToBid = getBidAmount(itemId, itemInfo, overbidProtection)
+            
+            if amountToBid then
+                BiddingQueue.push(string.format("[%d] - %s: [%d] x [%s] = [%s] from [%s]", 
+                    currentItemIndex, itemLink, itemInfo.count, GetMoneyString(amountToBid / itemInfo.count), 
+                    GetMoneyString(amountToBid), itemInfo.owner or ""))
+                PlaceAuctionBid("list", currentItemIndex, amountToBid)
+            end
+        end
+        
+        currentItemIndex = currentItemIndex + 1
+        print(format("current index = %d", currentItemIndex))
+    --end
+end
+
+function ResetIndex()
+    currentItemIndex = 1
+    print(format("current index = %d", currentItemIndex))
+end
+
+local frame = CreateFrame("FRAME")
+frame:RegisterEvent("AUCTION_ITEM_LIST_UPDATE")
+frame:SetScript("OnEvent", function(self, event, ...)
+    if event == "AUCTION_ITEM_LIST_UPDATE" then
+        --currentItemIndex = 1
+        --print("currentItemIndex set to 1")
+    end
+end)

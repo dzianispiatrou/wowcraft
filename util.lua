@@ -55,15 +55,30 @@ function GetCost(itemId)
 end
 
 local function AddNonProfitPriceToTooltip(tooltip, itemId)
-    local source, cost = GetCost(itemId)
+    local priceSource, cost = GetCost(itemId)
     local price = cost / AH_CUT_MULTIPLIER
     local formattedCost = GetCoinTextureString(cost)
     local formattedPrice = GetCoinTextureString(price)
     
+    local itemSource
+    
+    if BlacksmithingDB[itemId] ~= nil then
+        itemSource = "BLACKSMITHING"
+    elseif LeatherworkingDB[itemId] ~= nil then
+        itemSource = "LEATHERWORKING"
+    elseif TailoringDB[itemId] ~= nil then
+        itemSource = "TAILORING"
+    elseif JewelcraftingDB[itemId] ~= nil then
+        itemSource = "JEWELCRAFTING"
+    else
+        itemSource = "UNKNOWN"
+    end
+    
     tooltip:AddLine("ID: "..itemId, 1, 1, 1)
     tooltip:AddLine("COST: "..formattedCost, 1, 1, 1)
     tooltip:AddLine("NONPROFIT: "..formattedPrice, 1, 1, 1)
-    tooltip:AddLine("SOURCE: "..source,1 ,1 , 1)
+    tooltip:AddLine("PRICE SOURCE: "..priceSource,1 ,1 , 1)
+    tooltip:AddLine("ITEM SOURCE: "..itemSource,1 ,1 , 1)
     tooltip:Show()
 end
 
