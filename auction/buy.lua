@@ -245,7 +245,7 @@ local frame = CreateFrame("FRAME")
 frame:RegisterEvent("AUCTION_ITEM_LIST_UPDATE")
 frame:SetScript("OnEvent", function(self, event, ...)
     if event == "AUCTION_ITEM_LIST_UPDATE" then
-        --currentItemIndex = 1
+        --currentItemIndex = 11
         --print("currentItemIndex set to 1")
     end
 end)
