@@ -111,4 +111,5 @@ MAT = {
     [10286] = 65000,  --heart of the wild
     [13467] = 50000,  --icecap
     [13465] = 65000,  --Mountain Silversage
+    [43007] = 0,  --
 }
