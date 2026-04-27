@@ -112,5 +112,5 @@ MAT = {
     [13467] = 50000,  --icecap
     [13465] = 65000,  --Mountain Silversage
     [43007] = 10000,  --Northern Spices
-    [3858] = 0,  --mithril ore
+    [3858] = 52250,  --mithril ore
 }
