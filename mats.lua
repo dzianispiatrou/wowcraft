@@ -113,4 +113,5 @@ MAT = {
     [13465] = 65000,  --Mountain Silversage
     [43007] = 10000,  --Northern Spices
     [3858] = 52250,  --mithril ore
+    [3860] = 52250,  --mithril bar
 }
