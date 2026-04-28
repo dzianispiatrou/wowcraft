@@ -115,6 +115,7 @@ MAT = {
     [3858] = 52250,  --mithril ore
     [3860] = 52250,  --mithril bar
     [45995] = 110000000,  --lost ring
+    [45995] = 110000000,  --forgotten necklace
     [54069] = 550000000,  --Blazing Hippogryph
     [49282] = 275000000,  --Big Battle Bear
     [21168] = 275000000,  --Baby Shark
