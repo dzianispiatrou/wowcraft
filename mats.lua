@@ -120,6 +120,7 @@ MAT = {
     [49286] = 311666666.6666666,  --X-51 Nether-Rocket X-TREME
     [49282] = 275000000,  --Big Battle Bear
     [49285] = 128333333.33333333,  --X-51 Nether-Rocket
+    [49290] = 1613333333.3333333,  --Magic Rooster Egg
     [21168] = 275000000,  --Baby Shark
     [45942] = 275000000,  --XS-001 Constructor Bot
 }
