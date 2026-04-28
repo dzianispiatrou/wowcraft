@@ -118,5 +118,6 @@ MAT = {
     [45995] = 110000000,  --forgotten necklace
     [54069] = 550000000,  --Blazing Hippogryph
     [49282] = 275000000,  --Big Battle Bear
+    [49285] = 128333333.33333333,  --X-51 Nether-Rocket
     [21168] = 275000000,  --Baby Shark
 }
