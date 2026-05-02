@@ -114,6 +114,7 @@ MAT = {
     [43007] = 10000,  --Northern Spices
     [3858] = 57000,  --mithril ore
     [3860] = 57000,  --mithril bar
+    [2319] = 0,  --
     [45994] = 120666666.66666666,  --lost ring
     [45995] = 120666666.66666666,  --forgotten necklace
     [54069] = 570000000,  --Blazing Hippogryph
