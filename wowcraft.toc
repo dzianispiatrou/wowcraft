@@ -2,12 +2,14 @@
 ## Title: Wowcraft
 ## Version: 1.0
 
-mats.lua
+util.lua
+buylist\mats.lua
+buylist\internalBuylist.lua
+buylist\appraiser.lua
 recipe\jewelcrafting.lua
 recipe\leatherworking.lua
 recipe\tailoring.lua
 recipe\blacksmithing.lua
-util.lua
 auction\biddingQueue.lua
 auction\buy.lua
 auction\sell.lua

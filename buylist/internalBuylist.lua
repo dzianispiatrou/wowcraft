@@ -1,1 +1,1 @@
-1
+INTERNAL_BUYLIST = {}
