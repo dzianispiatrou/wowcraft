@@ -22,6 +22,7 @@ MAT = {
     [41595] = 357500,  --Spellweave
     [41593] = 357500,  --Ebonweave
     [41594] = 327500,  --Moonshroud
+    [42253] = 10000,  --Iceweb Spider Silk
     [34052] = 350000,  --Dream Shard
     [34053] = 116666.66666666666,  --Small Dream Shard
     [34054] = 42500,  --Infinite Dust
