@@ -1,4 +1,4 @@
-MAT = {
+INTERNAL_BUYLIST = {
     [36860] = 280000,  --Eternal Fire
     [35627] = 280000,  --Eternal Shadow
     [35625] = 250000,  --Eternal Life
