@@ -1,21 +1,6 @@
 AH_CUT_MULTIPLIER = 0.95
 BID_INCREMENT_MULTIPLIER = 1.05
 
-function IsMat(itemId)
-    return MAT[itemId] ~= nil
-end
-
-function IsProfessionItem(itemId)
-    return LeatherworkingDB[itemId] ~= nil
-        or TailoringDB[itemId] ~= nil
-        or BlacksmithingDB[itemId] ~= nil
-        or JewelcraftingDB[itemId] ~= nil
-end
-
-function IsItemFromList(itemId)
-    return IsMat(itemId) or IsProfessionItem(itemId)
-end
-
 function GetMoneyString(money)
     local gold = floor(money / 10000)
     local silver = floor((money - gold * 10000) / 100)
@@ -30,54 +15,16 @@ function GetMoneyString(money)
     end
 end
 
-function GetCost(itemId)
-    local cost = 0
-    
-    if IsMat(itemId) then
-        cost = MAT[itemId]
-        return "BUYLIST", cost
-    elseif IsProfessionItem(itemId) then
-        local recipe = LeatherworkingDB[itemId] or TailoringDB[itemId] or BlacksmithingDB[itemId] or JewelcraftingDB[itemId]
-        
-        for matId, quantity in pairs(recipe) do
-            local source, matCost = GetCost(matId)
-            
-            if source == "VENDOR" then
-                local _, _, _, _, _, _, _, _, _, _, vendorPrice = GetItemInfo(itemId)
-                return "VENDOR", vendorPrice
-            end
-            cost = cost + matCost * quantity
-        end
-        return "PROFESSION", cost
-    end
-    local _, _, _, _, _, _, _, _, _, _, vendorPrice = GetItemInfo(itemId)
-    return "VENDOR", vendorPrice
-end
-
 local function AddNonProfitPriceToTooltip(tooltip, itemId)
-    local priceSource, cost = GetCost(itemId)
-    local price = cost / AH_CUT_MULTIPLIER
+    local itemCost = GetItemCost(itemId)
+    local itemPrice = itemCost / AH_CUT_MULTIPLIER
+    local itemSource = GetItemSource(itemId)
     local formattedCost = GetCoinTextureString(cost)
     local formattedPrice = GetCoinTextureString(price)
-    
-    local itemSource
-    
-    if BlacksmithingDB[itemId] ~= nil then
-        itemSource = "BLACKSMITHING"
-    elseif LeatherworkingDB[itemId] ~= nil then
-        itemSource = "LEATHERWORKING"
-    elseif TailoringDB[itemId] ~= nil then
-        itemSource = "TAILORING"
-    elseif JewelcraftingDB[itemId] ~= nil then
-        itemSource = "JEWELCRAFTING"
-    else
-        itemSource = "UNKNOWN"
-    end
     
     tooltip:AddLine("ID: "..itemId, 1, 1, 1)
     tooltip:AddLine("COST: "..formattedCost, 1, 1, 1)
     tooltip:AddLine("NONPROFIT: "..formattedPrice, 1, 1, 1)
-    tooltip:AddLine("PRICE SOURCE: "..priceSource,1 ,1 , 1)
     tooltip:AddLine("ITEM SOURCE: "..itemSource,1 ,1 , 1)
     tooltip:Show()
 end
@@ -96,8 +43,12 @@ end)
 
 -- Helper function to extract item ID from hyperlink
 function GetItemInfoFromHyperlink(hyperlink)
-    if not hyperlink then return nil end
+    if not hyperlink then
+        return nil
+    end
+    
     local _, _, itemString = string.find(hyperlink, "|H(.+)|h%[.+%]")
+    
     if itemString then
         local _, itemId = strsplit(":", itemString)
         return tonumber(itemId)

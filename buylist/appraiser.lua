@@ -30,10 +30,10 @@ function IsCraftedItem(itemId)
 end
 
 function GetItemSource(itemId)
-    if IsItemFromBuylist(itemId) then
-        return "BUYLIST"
-    elseif IsItemFromInternalBuylist(itemId) then
+    if IsItemFromInternalBuylist(itemId) then
         return "INTERNAL BUYLIST"
+    elseif IsItemFromBuylist(itemId) then
+        return "BUYLIST"
     elseif IsItemFromTailoring(itemId) then
         return "TAILORING"
     elseif IsItemFromLeatherworking(itemId) then
@@ -44,27 +44,6 @@ function GetItemSource(itemId)
         return "JEWELCRAFTING"
     else
         return "UNKNOWN"
-    end
-end
-
-function GetPriceSource(itemId)
-    local _, _, _, _, _, _, _, _, _, _, vendorPrice = GetItemInfo(itemId)
-    local itemCost = GetItemCost(itemId)
-    
-    if IsItemFromBuylist(itemId) then
-        return "BUYLIST"
-    elseif IsItemFromInternalBuylist(itemId) then
-        return "INTERNAL BUYLIST"
-    elseif IsItemFromTailoring(itemId) then
-        return "TAILORING"
-    elseif IsItemFromLeatherworking(itemId) then
-        return "LEATHERWORKING"
-    elseif IsItemFromBlacksmithing(itemId) then
-        return "BLACKSMITHING"
-    elseif IsItemFromJewelcrafting(itemId) then
-        return "JEWELCRAFTING"
-    else
-        return "VENDOR"
     end
 end
 
