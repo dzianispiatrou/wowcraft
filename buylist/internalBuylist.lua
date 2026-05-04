@@ -36,7 +36,6 @@ MAT = {
     [38557] = 60000,  --Icy Dragonscale
     [38558] = 11666.666666666668,  --Nerubian Chitin
     [38561] = 60000,  --Jormungar Scale
-    [42225] = 600000,  -- Dragon's Eye
     [36919] = 1400000,  --Cardinal Ruby
     [36934] = 250000,  --Eye of Zul
     [36925] = 550000,  --Majestic Zircon
