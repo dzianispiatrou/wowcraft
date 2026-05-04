@@ -3,12 +3,7 @@ local PURCHASE_FILTER = {
     mats = IsMat,
 }
 
-local sessionProfit = 0
-
-currentItemIndex = 1
-
-local function getBidAmount(itemId, itemInfo, overbidProtection)
-    local _, itemCost = GetCost(itemId)
+local function getBidAmount(itemCost, itemInfo, overbidProtection)
     local maxPrice = itemCost * itemInfo.count
     local nextBid = math.max(itemInfo.minBid, itemInfo.bidAmount) + itemInfo.minIncrement
     
@@ -44,7 +39,7 @@ function EstimateProfit()
         local itemLink = GetAuctionItemLink("list", i)
         local itemId = tonumber(itemLink:match("item:(%d+):"))
         
-        if IsMat(itemId) then
+        if Is(itemId) then
             local itemInfo = {}
             itemInfo.name, 
             itemInfo.texture, 
@@ -59,7 +54,7 @@ function EstimateProfit()
             itemInfo.highestBidder, 
             itemInfo.owner, 
             itemInfo.sold = GetAuctionItemInfo("list", i)
-            local _, cost = GetCost(itemId)
+            local cost = GetItemCost(itemId)
             local maxPrice = cost * itemInfo.count
             
             if 0 < itemInfo.buyoutPrice and itemInfo.buyoutPrice <= maxPrice then
@@ -100,7 +95,7 @@ function EstimateProfit()
     end
 end
 
-local function Buy(msg, filterType)
+local function Buy(msg, includeCrafted)
     if not AuctionFrame or not AuctionFrame:IsShown() then
         return
     end
@@ -115,39 +110,45 @@ local function Buy(msg, filterType)
         local itemLink = GetAuctionItemLink("list", i)
         local itemId = tonumber(itemLink:match("item:(%d+):"))
         
-        if filterFunc(itemId) then
-            local itemInfo = {}
-            itemInfo.name, 
-            itemInfo.texture, 
-            itemInfo.count,
-            itemInfo.quality, 
-            itemInfo.canUse, 
-            itemInfo.level, 
-            itemInfo.minBid, 
-            itemInfo.minIncrement, 
-            itemInfo.buyoutPrice, 
-            itemInfo.bidAmount, 
-            itemInfo.highestBidder, 
-            itemInfo.owner, 
-            itemInfo.sold = GetAuctionItemInfo("list", i)
-            local amountToBid = getBidAmount(itemId, itemInfo, overbidProtection)
-            
-            if amountToBid then
-                BiddingQueue.push(string.format("[%d] - %s: [%d] x [%s] = [%s] from [%s]", 
-                    i, itemLink, itemInfo.count, GetMoneyString(amountToBid / itemInfo.count), 
-                    GetMoneyString(amountToBid), itemInfo.owner or ""))
-                PlaceAuctionBid("list", i, amountToBid)
-            end
+        local itemInfo = {}
+        itemInfo.name, 
+        itemInfo.texture, 
+        itemInfo.count,
+        itemInfo.quality, 
+        itemInfo.canUse, 
+        itemInfo.level, 
+        itemInfo.minBid, 
+        itemInfo.minIncrement, 
+        itemInfo.buyoutPrice, 
+        itemInfo.bidAmount, 
+        itemInfo.highestBidder, 
+        itemInfo.owner, 
+        itemInfo.sold = GetAuctionItemInfo("list", i)
+        
+        local itemCost = GetItemCost(itemId)
+        
+        if not includeCrafted and IsCraftedItem(itemId) then
+            itemCost = GetVendorPrice(itemId)
         end
+        
+        local amountToBid = getBidAmount(itemCost, itemInfo, overbidProtection)
+            
+        if amountToBid then
+            BiddingQueue.push(string.format("[%d] - %s: [%d] x [%s] = [%s] from [%s]", 
+                i, itemLink, itemInfo.count, GetMoneyString(amountToBid / itemInfo.count), 
+                GetMoneyString(amountToBid), itemInfo.owner or ""))
+            PlaceAuctionBid("list", i, amountToBid)
+        end
+        
     end
 end
 
 function BuyAll(msg)
-    Buy(msg, "all")
+    Buy(msg, true)
 end
 
 function BuyMats(msg)
-    Buy(msg, "mats")
+    Buy(msg, false)
 end
 
 function BuyToVendor()
@@ -180,9 +181,10 @@ function BuyToVendor()
             itemInfo.sold = GetAuctionItemInfo("list", i)
             
             local amountToBid = getBidAmount(itemId, itemInfo, overbidProtection)
-            local reason, cost = GetCost(itemId)
+            local itemCost = GetItemCost(itemId)
+            local vendorPrice = GetVendorPrice(itemId)
             
-            if amountToBid and reason == "VENDOR" then
+            if amountToBid and itemCost == vendorPrice then
                 BiddingQueue.push(string.format("[%d] - %s: [%d] x [%s] = [%s] from [%s]", 
                     i, itemLink, itemInfo.count, GetMoneyString(amountToBid / itemInfo.count), 
                     GetMoneyString(amountToBid), itemInfo.owner or ""))
@@ -190,62 +192,3 @@ function BuyToVendor()
             end
     end
 end
-
-function OneClickOneBid(msg)
-    if not AuctionFrame or not AuctionFrame:IsShown() then
-        return
-    end
-    
-    BiddingQueue.reset()
-
-    local overbidProtection = tonumber(msg) or BID_INCREMENT_MULTIPLIER
-    local numAuctionItems = GetNumAuctionItems("list")
-    local filterFunc = IsMat
-    
-    --for i = 1, numAuctionItems do
-        local itemLink = GetAuctionItemLink("list", currentItemIndex)
-        local itemId = tonumber(itemLink:match("item:(%d+):"))
-        
-        if filterFunc(itemId) then
-            local itemInfo = {}
-            itemInfo.name, 
-            itemInfo.texture, 
-            itemInfo.count,
-            itemInfo.quality, 
-            itemInfo.canUse, 
-            itemInfo.level, 
-            itemInfo.minBid, 
-            itemInfo.minIncrement, 
-            itemInfo.buyoutPrice, 
-            itemInfo.bidAmount, 
-            itemInfo.highestBidder, 
-            itemInfo.owner, 
-            itemInfo.sold = GetAuctionItemInfo("list", currentItemIndex)
-            local amountToBid = getBidAmount(itemId, itemInfo, overbidProtection)
-            
-            if amountToBid then
-                BiddingQueue.push(string.format("[%d] - %s: [%d] x [%s] = [%s] from [%s]", 
-                    currentItemIndex, itemLink, itemInfo.count, GetMoneyString(amountToBid / itemInfo.count), 
-                    GetMoneyString(amountToBid), itemInfo.owner or ""))
-                PlaceAuctionBid("list", currentItemIndex, amountToBid)
-            end
-        end
-        
-        currentItemIndex = currentItemIndex + 1
-        print(format("current index = %d", currentItemIndex))
-    --end
-end
-
-function ResetIndex()
-    currentItemIndex = 1
-    print(format("current index = %d", currentItemIndex))
-end
-
-local frame = CreateFrame("FRAME")
-frame:RegisterEvent("AUCTION_ITEM_LIST_UPDATE")
-frame:SetScript("OnEvent", function(self, event, ...)
-    if event == "AUCTION_ITEM_LIST_UPDATE" then
-        --currentItemIndex = 11
-        --print("currentItemIndex set to 1")
-    end
-end)

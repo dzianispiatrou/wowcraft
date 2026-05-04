@@ -11,9 +11,11 @@ function PostItems()
             if itemLink then
                 local itemId = GetItemInfoFromHyperlink(itemLink)
                 
-                if not IsMat(itemId) and IsProfessionItem(itemId) then
-                    local _, cost = GetCost(itemId)
-                    price = cost / AH_CUT_MULTIPLIER
+                if not IsItemFromBuylist(itemId)
+                   and not IsItemFromInternalBuylist(itemId)
+                   and IsCraftedItem(itemId) then
+                    local itemCost = GetItemCost(itemId)
+                    local itemPrice = itemCost / AH_CUT_MULTIPLIER
                     local _, itemCount, _, _, _, _, _ = GetContainerItemInfo(bag, slot)
                     local stackSize = 1
                     local numStacks = 1
@@ -23,8 +25,8 @@ function PostItems()
                         PickupContainerItem(bag, slot)
                         ClickAuctionSellItemButton()
                         ClearCursor()
-                        StartAuction(price + randomProfit, price + randomProfit, DURATION, stackSize, numStacks)
-                        print(format("%s %s x %d", itemLink, GetMoneyString(price + randomProfit), itemCount))
+                        StartAuction(itemPrice + randomProfit, itemPrice + randomProfit, DURATION, stackSize, numStacks)
+                        print(format("%s %s x %d", itemLink, GetMoneyString(itemPrice + randomProfit), itemCount))
                     end
                 end
             end

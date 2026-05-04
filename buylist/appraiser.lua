@@ -47,11 +47,16 @@ function GetItemSource(itemId)
     end
 end
 
+function GetVendorPrice(itemId)
+    local _, _, _, _, _, _, _, _, _, _, vendorPrice = GetItemInfo(itemId)
+    return vendorPrice
+end
+
 -- Calculates and returns item cost
 -- Priority: internal buylist, buylist, craft cost, vendor
 -- The craft cost equals the vendor price if the recipe uses unlisted mats
 function GetItemCost(itemId)
-    local _, _, _, _, _, _, _, _, _, _, vendorPrice = GetItemInfo(itemId)
+    local vendorPrice = GetVendorPrice(itemId)
     local itemCost = 0
     
     if IsItemFromInternalBuylist(itemId) then
@@ -67,8 +72,11 @@ function GetItemCost(itemId)
             if source == "UNKNOWN" then
                 return vendorPrice
             else
-                cost = cost + matCost * quantity
+                itemCost = itemCost + GetItemCost(matId) * quantity
             end
         end
+        return itemCost
+    else
+        return vendorPrice
     end
 end

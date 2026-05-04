@@ -19,8 +19,8 @@ local function AddNonProfitPriceToTooltip(tooltip, itemId)
     local itemCost = GetItemCost(itemId)
     local itemPrice = itemCost / AH_CUT_MULTIPLIER
     local itemSource = GetItemSource(itemId)
-    local formattedCost = GetCoinTextureString(cost)
-    local formattedPrice = GetCoinTextureString(price)
+    local formattedCost = GetCoinTextureString(itemCost)
+    local formattedPrice = GetCoinTextureString(itemPrice)
     
     tooltip:AddLine("ID: "..itemId, 1, 1, 1)
     tooltip:AddLine("COST: "..formattedCost, 1, 1, 1)
