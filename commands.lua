@@ -37,13 +37,3 @@ SLASH_BUYBIDMATS1 = "/buybidmats"
 SlashCmdList["BUYBIDMATS"] = function(msg)
     BuyMats(msg)
 end
-
-SLASH_ONECLICKONEBID1 = "/oneclickonebid"
-SlashCmdList["ONECLICKONEBID"] = function(msg)
-    OneClickOneBid(msg)
-end
-
-SLASH_RESETINDEX1 = "/resetindex"
-SlashCmdList["RESETINDEX"] = function()
-    ResetIndex()
-end
