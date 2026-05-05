@@ -125,12 +125,11 @@ local function Buy(msg, includeCrafted)
         itemInfo.owner, 
         itemInfo.sold = GetAuctionItemInfo("list", i)
         
-        local itemCost = GetItemCost(itemId)
+        local itemCost = GetVendorPrice(itemId)
         
-        if not includeCrafted and IsCraftedItem(itemId) then
-            itemCost = GetVendorPrice(itemId)
+        if IsItemFromBuylist(itemId) or IsItemFromInternalBuylist(itemId) or includeCrafted then
+            itemCost = GetItemCost(itemId)
         end
-        
         local amountToBid = getBidAmount(itemCost, itemInfo, overbidProtection)
             
         if amountToBid then
@@ -180,8 +179,9 @@ function BuyToVendor()
             itemInfo.owner, 
             itemInfo.sold = GetAuctionItemInfo("list", i)
             
-            local amountToBid = getBidAmount(itemId, itemInfo, overbidProtection)
+            
             local itemCost = GetItemCost(itemId)
+            local amountToBid = getBidAmount(itemCost, itemInfo, overbidProtection)
             local vendorPrice = GetVendorPrice(itemId)
             
             if amountToBid and itemCost == vendorPrice then
