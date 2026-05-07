@@ -63,4 +63,5 @@ INTERNAL_BUYLIST = {
     [49290] = 1662222222.222222,  --Magic Rooster Egg
     [21168] = 283333333.3333333,  --Baby Shark
     [45942] = 283333333.3333333,  --XS-001 Constructor Bot
+    [40211] = 0,  --Potion of Speed
 }
