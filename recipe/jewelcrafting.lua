@@ -1,4 +1,4 @@
-JewelcraftingDB = {
+JEWELCRAFTING = {
 		[39919] = {
 			[36923] = 1,
 		},

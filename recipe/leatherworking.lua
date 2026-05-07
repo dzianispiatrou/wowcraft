@@ -1,5 +1,5 @@
-LeatherworkingDB = {
-[47581] = { -- Bracers of Swift Death
+LEATHERWORKING = {
+    [47581] = { -- Bracers of Swift Death
         [38425] = 20,  -- Heavy Borean Leather
         [35627] = 12,  -- Eternal Shadow
         [44128] = 6,   -- Arctic Fur

@@ -7,26 +7,26 @@ function IsItemFromInternalBuylist(itemId)
 end
 
 function IsItemFromTailoring(itemId)
-    return TailoringDB[itemId] ~= nil
+    return TAILORING[itemId] ~= nil
 end
 
 function IsItemFromLeatherworking(itemId)
-    return LeatherworkingDB[itemId] ~= nil
+    return LEATHERWORKING[itemId] ~= nil
 end
 
 function IsItemFromJewelcrafting(itemId)
-    return JewelcraftingDB[itemId] ~= nil
+    return JEWELCRAFTING[itemId] ~= nil
 end
 
 function IsItemFromBlacksmithing(itemId)
-    return BlacksmithingDB[itemId] ~= nil
+    return BLACKSMITHING[itemId] ~= nil
 end
 
 function IsCraftedItem(itemId)
-    return LeatherworkingDB[itemId] ~= nil
-        or TailoringDB[itemId] ~= nil
-        or BlacksmithingDB[itemId] ~= nil
-        or JewelcraftingDB[itemId] ~= nil
+    return LEATHERWORKING[itemId] ~= nil
+        or TAILORING[itemId] ~= nil
+        or BLACKSMITHING[itemId] ~= nil
+        or JEWELCRAFTING[itemId] ~= nil
 end
 
 function GetItemSource(itemId)
@@ -64,7 +64,7 @@ function GetItemCost(itemId)
     elseif IsItemFromBuylist(itemId) then
         return MAT[itemId]
     elseif IsCraftedItem(itemId) then
-        local recipe = LeatherworkingDB[itemId] or TailoringDB[itemId] or BlacksmithingDB[itemId] or JewelcraftingDB[itemId]
+        local recipe = LEATHERWORKING[itemId] or TAILORING[itemId] or BLACKSMITHING[itemId] or JEWELCRAFTING[itemId]
         
         for matId, quantity in pairs(recipe) do
             local source = GetItemSource(matId)

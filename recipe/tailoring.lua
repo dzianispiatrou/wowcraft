@@ -1,5 +1,4 @@
-
-	TailoringDB = {
+TAILORING = {
     [47585] = { -- Bejeweled Wizard's Bracers
         [41595] = 8,   -- Spellweave
         [36934] = 1,   -- Eye of Zul

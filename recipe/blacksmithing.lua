@@ -1,4 +1,4 @@
-BlacksmithingDB = {
+BLACKSMITHING = {
     [47572] = { -- Titanium Spikeguards
         [37663] = 8,   -- Titansteel Bar
         [41355] = 1,   -- Vengeance Bindings
