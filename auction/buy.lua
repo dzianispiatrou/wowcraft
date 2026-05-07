@@ -1,8 +1,3 @@
-local PURCHASE_FILTER = {
-    all = IsItemFromList,
-    mats = IsMat,
-}
-
 local function getBidAmount(itemCost, itemInfo, overbidProtection)
     local maxPrice = itemCost * itemInfo.count
     local nextBid = math.max(itemInfo.minBid, itemInfo.bidAmount) + itemInfo.minIncrement
@@ -104,7 +99,6 @@ local function Buy(msg, includeCrafted)
 
     local overbidProtection = tonumber(msg) or BID_INCREMENT_MULTIPLIER
     local numAuctionItems = GetNumAuctionItems("list")
-    local filterFunc = PURCHASE_FILTER[filterType]
     
     for i = 1, numAuctionItems do
         local itemLink = GetAuctionItemLink("list", i)
