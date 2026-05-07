@@ -67,5 +67,5 @@ INTERNAL_BUYLIST = {
     [40212] = 470000,  --Potion of Wild Magic
     [46377] = 1000000,  --Flask of Endless Rage
     [46376] = 800000,  --Flask of the Frost Wyrm
-    [46379] = 0,  --Flask of Stoneblood
+    [46379] = 1000000,  --Flask of Stoneblood
 }
