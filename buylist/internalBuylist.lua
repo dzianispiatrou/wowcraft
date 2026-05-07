@@ -65,4 +65,5 @@ INTERNAL_BUYLIST = {
     [45942] = 283333333.3333333,  --XS-001 Constructor Bot
     [40211] = 360000,  --Potion of Speed
     [40212] = 470000,  --Potion of Wild Magic
+    [46377] = 0,  --Flask of Endless Rage
 }
