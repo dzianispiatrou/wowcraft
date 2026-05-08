@@ -186,3 +186,49 @@ function BuyToVendor()
             end
     end
 end
+
+function AppraiseBids()
+    if not AuctionFrame or not AuctionFrame:IsShown() then
+        return
+    end
+    
+    local numAuctionBids = GetNumAuctionItems("bidder")
+    local totalBidAmount = 0
+    local totalBuylistCost = 0
+    local totalLoss = 0
+    
+    for i = 1, numAuctionBids do
+        local itemInfo = {}
+        itemInfo.name, 
+        itemInfo.texture, 
+        itemInfo.count,
+        itemInfo.quality, 
+        itemInfo.canUse, 
+        itemInfo.level, 
+        itemInfo.minBid, 
+        itemInfo.minIncrement, 
+        itemInfo.buyoutPrice, 
+        itemInfo.bidAmount, 
+        itemInfo.highestBidder, 
+        itemInfo.owner, 
+        itemInfo.sold = GetAuctionItemInfo("bidder", i)
+        
+        local currentBid = itemInfo.bidAmount
+        totalBidAmount = totalBidAmount + currentBid
+        
+        local itemLink = GetAuctionItemLink("bidder", i)
+        local itemId = tonumber(itemLink:match("item:(%d+):"))
+        local currentBuylistCost = GetItemCost(itemId) * itemInfo.count
+        totalBuylistCost = totalBuylistCost + currentBuylistCost
+       
+        if currentBid > currentBuylistCost then
+            local delta = currentBid - currentBuylistCost
+            totalLoss = totalLoss + delta
+            print(string.format("%s bid: %s buylist: %s delta: %s",itemLink, GetMoneyString(currentBid), GetMoneyString(currentBuylistCost), GetMoneyString(delta)))
+        end
+    end
+    
+    print(string.format("%s is wasted on bids", GetMoneyString(totalBidAmount)))
+    print(string.format("%s is their buylist price", GetMoneyString(totalBuylistCost)))
+    print(string.format("%s is total loss", GetMoneyString(totalLoss)))
+end

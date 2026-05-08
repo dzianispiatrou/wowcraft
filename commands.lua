@@ -37,3 +37,8 @@ SLASH_BUYBIDMATS1 = "/buybidmats"
 SlashCmdList["BUYBIDMATS"] = function(msg)
     BuyMats(msg)
 end
+
+SLASH_APPRAISEBIDS1 = "/appraisebids"
+SlashCmdList["APPRAISEBIDS"] = function()
+    AppraiseBids()
+end
