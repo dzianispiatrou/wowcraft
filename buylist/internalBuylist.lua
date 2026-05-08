@@ -68,4 +68,5 @@ INTERNAL_BUYLIST = {
     [46377] = 1000000,  --Flask of Endless Rage
     [46376] = 800000,  --Flask of the Frost Wyrm
     [46379] = 1000000,  --Flask of Stoneblood
+    [40769] = 0,  -- [Scrapbot Construction Kit]
 }
