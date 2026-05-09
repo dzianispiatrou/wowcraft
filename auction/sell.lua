@@ -1,7 +1,10 @@
 local DURATION = 3  -- 3 = 48 hours
 
 -- Function to post BoE items from bags
-function PostItems()
+function PostItems(profit)
+
+    local p = tonumber(profit) or 0
+    
     for bag = 0, 3 do
         local numSlots = GetContainerNumSlots(bag)
         
@@ -21,12 +24,12 @@ function PostItems()
                     local numStacks = 1
                     
                     for j = 1, itemCount do
-                        local randomProfit = math.random(0,10000)
+                        local randomProfit = math.random(0,p * 10000)
                         PickupContainerItem(bag, slot)
                         ClickAuctionSellItemButton()
                         ClearCursor()
                         StartAuction(itemPrice + randomProfit, itemPrice + randomProfit, DURATION, stackSize, numStacks)
-                        print(format("%s %s x %d", itemLink, GetMoneyString(itemPrice + randomProfit), itemCount))
+                        print(format("%s %s", itemLink, GetMoneyString(itemPrice + randomProfit)))
                     end
                 end
             end

@@ -1,6 +1,6 @@
 SLASH_POSTITEMS1 = "/postitems"
-SlashCmdList["POSTITEMS"] = function()
-    PostItems()
+SlashCmdList["POSTITEMS"] = function(msg)
+    PostItems(msg)
 end
 
 SLASH_VENDORBUY1 = "/vendorbuy"
