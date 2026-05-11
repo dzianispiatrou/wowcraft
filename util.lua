@@ -21,11 +21,14 @@ local function AddNonProfitPriceToTooltip(tooltip, itemId)
     local itemSource = GetItemSource(itemId)
     local formattedCost = GetCoinTextureString(itemCost)
     local formattedPrice = GetCoinTextureString(itemPrice)
+    local coinsWord = " coins"
+    local coinCost = itemCost/GetItemCost(99999)
     
-    tooltip:AddLine("|cff00ff00ID: "..itemId, 1, 1, 1)
-    tooltip:AddLine("|cff00ff00COST: "..formattedCost, 1, 1, 1)
-    tooltip:AddLine("|cff00ff00NONPROFIT: "..formattedPrice, 1, 1, 1)
-    tooltip:AddLine("|cff00ff00SOURCE: "..itemSource,1 ,1 , 1)
+    tooltip:AddLine("|cff00ff00ID:|r "..itemId, 1, 1, 1)
+    tooltip:AddLine("|cff00ff00COST:|r "..formattedCost, 1, 1, 1)
+    tooltip:AddLine("|cff00ff00NONPROFIT:|r "..formattedPrice, 1, 1, 1)
+    tooltip:AddLine("|cff00ff00COST:|r "..coinCost..coinsWord,1 ,1 , 1)
+    tooltip:AddLine("|cff00ff00SOURCE:|r "..itemSource,1 ,1 , 1)
     tooltip:Show()
 end
 

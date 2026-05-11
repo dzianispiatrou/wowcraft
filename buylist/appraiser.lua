@@ -71,7 +71,7 @@ function GetItemCost(itemId)
     elseif IsItemFromBuylist(itemId) then
         return MAT[itemId]
     elseif IsCraftedItem(itemId) then
-        local recipe = LEATHERWORKING[itemId] or TAILORING[itemId] or BLACKSMITHING[itemId] or JEWELCRAFTING[itemId]
+        local recipe = LEATHERWORKING[itemId] or TAILORING[itemId] or BLACKSMITHING[itemId] or JEWELCRAFTING[itemId] or COIN[itemId]
         
         for matId, quantity in pairs(recipe) do
             local source = GetItemSource(matId)
