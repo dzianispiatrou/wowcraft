@@ -56,7 +56,7 @@ function EstimateProfit()
                 totalCost = totalCost + cost * itemInfo.count
                 totalPrice = totalPrice + itemInfo.buyoutPrice
             else
-                local amountToBid = getBidAmount(itemId, itemInfo, 1.025)
+                local amountToBid = getBidAmount(cost, itemInfo, 1.04)
                 
                 if amountToBid then
                     totalBidPrice = totalBidPrice + amountToBid
