@@ -54,6 +54,7 @@ INTERNAL_BUYLIST = {
     [3860] = 50350,  --mithril bar
     [8170] = 19000,  --rugged leather
     [2319] = 9500,  --medium
+    [999999] = 18888888.888888888,  --coin
     [45994] = 113333333.33333334,  --lost ring
     [45995] = 113333333.33333334,  --forgotten necklace
     [54069] = 566666666.6666666,  --Blazing Hippogryph
