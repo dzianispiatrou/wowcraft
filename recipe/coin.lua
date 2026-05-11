@@ -1,29 +1,29 @@
 COIN = {
     [45994] = { -- Lost Ring
-        [99999] = 6
+        [COIN_ID] = 6
     },
     [45995] = { -- Forgotten Necklace
-        [99999] = 6
+        [COIN_ID] = 6
     },
     [54069] = { -- Blazing Hippogryph
-        [99999] = 30
+        [COIN_ID] = 30
     },
     [49286] = { -- X-51 Nether-Rocket X-TREME
-        [99999] = 17
+        [COIN_ID] = 17
     },
     [49282] = { -- Big Battle Bear
-        [99999] = 15
+        [COIN_ID] = 15
     },
     [49285] = { -- X-51 Nether-Rocket
-        [99999] = 7
+        [COIN_ID] = 7
     },
     [21168] = { -- Baby Shark
-        [99999] = 15
+        [COIN_ID] = 15
     },
     [45942] = { -- XS-001 Constructor Bot
-        [99999] = 15
+        [COIN_ID] = 15
     },
     [49290] = { -- Magic Rooster Egg
-        [99999] = 50
+        [COIN_ID] = 50
     }
 }
