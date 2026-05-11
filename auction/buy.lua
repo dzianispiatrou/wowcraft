@@ -34,7 +34,7 @@ function EstimateProfit()
         local itemLink = GetAuctionItemLink("list", i)
         local itemId = tonumber(itemLink:match("item:(%d+):"))
         
-        if Is(itemId) then
+        if IsItemFromInternalBuylist(itemId) or IsItemFromBuylist(itemId) then
             local itemInfo = {}
             itemInfo.name, 
             itemInfo.texture, 
