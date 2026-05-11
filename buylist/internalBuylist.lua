@@ -54,7 +54,11 @@ INTERNAL_BUYLIST = {
     [3860] = 50350,  --mithril bar
     [8170] = 19000,  --rugged leather
     [2319] = 9500,  --medium
+<<<<<<< HEAD
     ["coin"] = 18888888.888888888,  --coin
+=======
+    [99999] = 18888888.888888888,  --coin
+>>>>>>> 4508b873a7ccffc9d7c055c536d3df3e997fab0d
     [40211] = 340000,  --Potion of Speed
     [40212] = 470000,  --Potion of Wild Magic
     [46377] = 1000000,  --Flask of Endless Rage
