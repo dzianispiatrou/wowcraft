@@ -22,11 +22,16 @@ function IsItemFromBlacksmithing(itemId)
     return BLACKSMITHING[itemId] ~= nil
 end
 
+function IsItemFromCoin(itemId)
+    return COIN[itemId] ~= nil
+end
+
 function IsCraftedItem(itemId)
     return LEATHERWORKING[itemId] ~= nil
         or TAILORING[itemId] ~= nil
         or BLACKSMITHING[itemId] ~= nil
         or JEWELCRAFTING[itemId] ~= nil
+        or COIN[itemId] ~= nil
 end
 
 function GetItemSource(itemId)
@@ -42,6 +47,8 @@ function GetItemSource(itemId)
         return "BLACKSMITHING"
     elseif IsItemFromJewelcrafting(itemId) then
         return "JEWELCRAFTING"
+    elseif IsItemFromCoin(itemId) then
+        return "COIN"
     else
         return "UNKNOWN"
     end
