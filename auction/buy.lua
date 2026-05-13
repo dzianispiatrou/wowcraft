@@ -151,7 +151,7 @@ function BuyToVendor()
     
     BiddingQueue.reset()
     
-    local overbidProtection = 1.045
+    local overbidProtection = 1.04
     
     local numAuctionItems = GetNumAuctionItems("list")
     
