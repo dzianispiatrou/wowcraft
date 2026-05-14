@@ -1,6 +1,6 @@
 MAT = {
     [45087] = 1500000,  -- runedorb
-    [49908] = 2700000,  -- primo
+    [49908] = 2750000,  -- primo
     [47556] = 1180000,  -- crusaderorb
     [43102] = 525000,  -- frozenorb
     [35627] = 277500,  -- eternalshadow
