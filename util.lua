@@ -1,6 +1,5 @@
 AH_CUT_MULTIPLIER = 0.95
 BID_INCREMENT_MULTIPLIER = 1.05
-COIN_ID = 99999
 
 function GetMoneyString(money)
     local gold = floor(money / 10000)
@@ -23,7 +22,7 @@ local function AddNonProfitPriceToTooltip(tooltip, itemId)
     local formattedCost = GetCoinTextureString(itemCost)
     local formattedPrice = GetCoinTextureString(itemPrice)
     local coinsWord = " coins"
-    local coinCost = itemCost/GetItemCost(COIN_ID)
+    local coinCost = itemCost/GetItemCost(6948)
     
     tooltip:AddLine("|cff00ff00ID:|r "..itemId, 1, 1, 1)
     tooltip:AddLine("|cff00ff00COST:|r "..formattedCost, 1, 1, 1)
