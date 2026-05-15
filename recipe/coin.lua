@@ -1,4 +1,7 @@
 COIN = {
+    [6948] = { -- Hearthstone (to see coin exchange rate)
+        [COIN_ID] = 1
+    },
     [45994] = { -- Lost Ring
         [COIN_ID] = 6
     },
@@ -24,6 +27,12 @@ COIN = {
         [COIN_ID] = 15
     },
     [49290] = { -- Magic Rooster Egg
-        [COIN_ID] = 50
+        [COIN_ID] = 60
+    },
+    [18964] = { -- Turtle Egg (Loggerhead)
+        [COIN_ID] = 15
+    },
+    [32498] = { -- Fortune Coin
+        [COIN_ID] = 15
     }
 }
