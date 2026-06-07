@@ -49,6 +49,7 @@ INTERNAL_BUYLIST = {
     [32228] = 0,  --
     [32227] = 0,  --
     [32231] = 0,  --
+    [32230] = 0,  --
     [41355] = 1122500,  --Vengeance Bindings
     [41245] = 548000,  --Deadly Saronite Dirk
     [38426] = 24000,  --Eternium Thread
