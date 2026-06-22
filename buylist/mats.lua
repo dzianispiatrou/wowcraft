@@ -15,12 +15,12 @@ MAT = {
     [41511] = 155000,  -- imbued
     [41163] = 427000,  -- titaniumbar
     [36910] = 213500,  -- titaniumore
-    [38557] = 65000,  -- icydragonscale
+    [38557] = 70000,  -- icydragonscale
     [34054] = 42000,  -- infinitedust
     [41510] = 100,  -- bolt
     [36913] = 61000,  -- saronitebar
     [36912] = 30500,  -- saroniteore
-    [38558] = 9500,  -- nerubianchitin
+    [38558] = 11500,  -- nerubianchitin
     [34052] = 335000,  -- dreamshard
     [33470] = 100,  -- frostweave
     [35623] = 261000,  -- eternalair
@@ -109,9 +109,9 @@ MAT = {
     [23446] = 25000,  -- adamantitebar
     [42253] = 10000,  -- iceweb
     [12363] = 50000,  -- arcanecrystal
-    [13465] = 24000, -- mountainsilversage
+    [13465] = 18000, -- mountainsilversage
     [13467] = 60000, -- icecap
     [10286] = 85000, -- heartofthewild
-    [38561] = 65000, -- jormungarscale
+    [38561] = 70000, -- jormungarscale
 
 }
