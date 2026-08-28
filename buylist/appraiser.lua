@@ -22,6 +22,10 @@ function IsItemFromBlacksmithing(itemId)
     return BLACKSMITHING[itemId] ~= nil
 end
 
+function IsItemFromEngineering(itemId)
+    return ENGINEERING[itemId] ~= nil
+end
+
 function IsItemFromCoin(itemId)
     return COIN[itemId] ~= nil
 end
@@ -31,6 +35,7 @@ function IsCraftedItem(itemId)
         or TAILORING[itemId] ~= nil
         or BLACKSMITHING[itemId] ~= nil
         or JEWELCRAFTING[itemId] ~= nil
+        or ENGINEERING[itemId] ~= nil
         or COIN[itemId] ~= nil
 end
 
@@ -47,6 +52,8 @@ function GetItemSource(itemId)
         return "BLACKSMITHING"
     elseif IsItemFromJewelcrafting(itemId) then
         return "JEWELCRAFTING"
+    elseif IsItemFromEngineering(itemId) then
+        return "ENGINEERING"
     elseif IsItemFromCoin(itemId) then
         return "COIN"
     else
@@ -71,7 +78,7 @@ function GetItemCost(itemId)
     elseif IsItemFromBuylist(itemId) then
         return MAT[itemId]
     elseif IsCraftedItem(itemId) then
-        local recipe = LEATHERWORKING[itemId] or TAILORING[itemId] or BLACKSMITHING[itemId] or JEWELCRAFTING[itemId] or COIN[itemId]
+        local recipe = LEATHERWORKING[itemId] or TAILORING[itemId] or BLACKSMITHING[itemId] or JEWELCRAFTING[itemId] or ENGINEERING[itemId] or COIN[itemId]
         
         for matId, quantity in pairs(recipe) do
             local source = GetItemSource(matId)
