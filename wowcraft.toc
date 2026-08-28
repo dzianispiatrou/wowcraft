@@ -12,6 +12,7 @@ recipe\jewelcrafting.lua
 recipe\leatherworking.lua
 recipe\tailoring.lua
 recipe\blacksmithing.lua
+recipe\engineering.lua
 recipe\coin.lua
 
 auction\biddingQueue.lua
