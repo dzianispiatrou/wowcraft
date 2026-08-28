@@ -53,6 +53,7 @@ INTERNAL_BUYLIST = {
     [32230] = 60000,  --
     [44499] = 30000000,  -- Salvaged Iron Golem Parts
     [44501] = 10000000,  --Goblin-machined Piston
+    [44500] = 0,  --Elementium-plated Exhaust Pipe
     [40533] = 50000,  --Walnut Stock
     [41355] = 1132500,  --Vengeance Bindings
     [41245] = 544400,  --Deadly Saronite Dirk
