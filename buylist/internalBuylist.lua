@@ -51,6 +51,7 @@ INTERNAL_BUYLIST = {
     [32231] = 60000,  --
     [32229] = 60000,  --
     [32230] = 60000,  --
+    [40533] = 50000,  --Walnut Stock
     [41355] = 1132500,  --Vengeance Bindings
     [41245] = 544400,  --Deadly Saronite Dirk
     [38426] = 24000,  --Eternium Thread
