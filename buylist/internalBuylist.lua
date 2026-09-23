@@ -67,7 +67,7 @@ INTERNAL_BUYLIST = {
     [40212] = 500000,  --Potion of Wild Magic
     [46377] = 1050000,  --Flask of Endless Rage
     [46376] = 830000,  --Flask of the Frost Wyrm
-    [46379] = 1000000,  --Flask of Stoneblood
+    [46379] = 1030000,  --Flask of Stoneblood
     [40199] = 30000,  --Pygmy Suckerfish
     [33448] = 190000,  --manatop
 }
