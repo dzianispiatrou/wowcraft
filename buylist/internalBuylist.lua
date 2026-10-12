@@ -1,4 +1,5 @@
 INTERNAL_BUYLIST = {
+    [34057] = 500000,  --Abyss Crystal
     [33567] = 5033.333333333333,  --Borean Leather Scraps
     [33568] = 25166.666666666668,  --Borean Leather
     [38425] = 151000,  --Heavy Borean Leather
