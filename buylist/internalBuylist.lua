@@ -1,4 +1,5 @@
 INTERNAL_BUYLIST = {
+    [33470] = 6799.999999999999,  --Frostweave Cloth
     [41510] = 34000,  --Bolt of Frostweave
     [33567] = 5033.333333333333,  --Borean Leather Scraps
     [33568] = 25166.666666666668,  --Borean Leather
