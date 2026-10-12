@@ -1,11 +1,4 @@
 INTERNAL_BUYLIST = {
-    [33470] = 9300,  --Frostweave Cloth
-    [41510] = 46500,  --Bolt of Frostweave
-    [41511] = 185000,  --Bolt of Imbued Frostweave
-    [41595] = 92500,  --Spellweave
-    [41593] = 92500,  --Ebonweave
-    [41594] = 92500,  --Moonshroud
-    [42253] = 10000,  --Iceweb Spider Silk
     [34052] = 390000,  --Dream Shard
     [34053] = 130000,  --Small Dream Shard
     [34054] = 46000,  --Infinite Dust
