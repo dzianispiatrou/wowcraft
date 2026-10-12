@@ -15,5 +15,5 @@ INTERNAL_BUYLIST = {
     [46376] = 830000,  --Flask of the Frost Wyrm
     [46379] = 1030000,  --Flask of Stoneblood
     [40199] = 30000,  --Pygmy Suckerfish
-    [33448] = 190000,  --manatop
+    [33448] = 200000,  --manatop
 }
