@@ -1,16 +1,9 @@
 INTERNAL_BUYLIST = {
-    [34052] = 390000,  --Dream Shard
-    [34053] = 130000,  --Small Dream Shard
-    [34054] = 46000,  --Infinite Dust
-    [34057] = 550000,  --Abyss Crystal
-    [34055] = 550000,  --Greater Cosmic Essence
-    [34056] = 183333.3333333333,  --Lesser Cosmic Essence
     [33567] = 5033.333333333333,  --Borean Leather Scraps
     [33568] = 25166.666666666668,  --Borean Leather
     [38425] = 151000,  --Heavy Borean Leather
     [44128] = 1510000,  --Arctic Fur
     [38557] = 115000,  --Icy Dragonscale
-    [38558] = 13000,  --Nerubian Chitin
     [38561] = 25000,  --Jormungar Scale
     [36919] = 1420000,  --Cardinal Ruby
     [36934] = 220000,  --Eye of Zul
