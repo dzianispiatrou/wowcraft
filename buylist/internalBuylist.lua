@@ -1,5 +1,6 @@
 INTERNAL_BUYLIST = {
     [41163] = 460000,  --Titanium Bar
+    [36913] = 67274.99999999999,  --Saronite Bar
     [34057] = 500000,  --Abyss Crystal
     [33567] = 5033.333333333333,  --Borean Leather Scraps
     [33568] = 25166.666666666668,  --Borean Leather
