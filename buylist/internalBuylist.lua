@@ -1,4 +1,5 @@
 INTERNAL_BUYLIST = {
+    [36860] = 327500,  --Eternal Fire
     [41163] = 460000,  --Titanium Bar
     [36913] = 67274.99999999999,  --Saronite Bar
     [34057] = 500000,  --Abyss Crystal
