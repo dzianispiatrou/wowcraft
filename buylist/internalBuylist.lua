@@ -2,6 +2,7 @@ INTERNAL_BUYLIST = {
     [36860] = 327500,  --Eternal Fire
     [35627] = 327500,  --Eternal Shadow
     [41163] = 460000,  --Titanium Bar
+    [36910] = 230000,  --Titanium Ore
     [36913] = 67274.99999999999,  --Saronite Bar
     [34057] = 500000,  --Abyss Crystal
     [33567] = 5033.333333333333,  --Borean Leather Scraps
