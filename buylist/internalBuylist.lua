@@ -5,6 +5,7 @@ INTERNAL_BUYLIST = {
     [33568] = 25166.666666666668,  --Borean Leather
     [38425] = 151000,  --Heavy Borean Leather
     [44128] = 1510000,  --Arctic Fur
+    [36931] = 950000,  --Ametrine
     [44499] = 30000000,  -- Salvaged Iron Golem Parts
     [44501] = 10000000,  --Goblin-machined Piston
     [44500] = 15000000,  --Elementium-plated Exhaust Pipe
