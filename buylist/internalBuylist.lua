@@ -8,6 +8,7 @@ INTERNAL_BUYLIST = {
     [36913] = 67274.99999999999,  --Saronite Bar
     [36912] = 33637.49999999999,  --Saronite Ore
     [37663] = 2195000,  --Titansteel Bar
+    [34052] = 405000,  --Dream Shard
     [34057] = 500000,  --Abyss Crystal
     [33567] = 5033.333333333333,  --Borean Leather Scraps
     [33568] = 25166.666666666668,  --Borean Leather
