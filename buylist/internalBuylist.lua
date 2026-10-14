@@ -10,6 +10,7 @@ INTERNAL_BUYLIST = {
     [37663] = 2195000,  --Titansteel Bar
     [33470] = 9800.000000000002,  --Frostweave Cloth
     [41510] = 49000,  --Bolt of Frostweave
+    [41511] = 98000,  --Bolt of Imbued Frostweave
     [34052] = 405000,  --Dream Shard
     [34057] = 500000,  --Abyss Crystal
     [33567] = 5133.333333333334,  --Borean Leather Scraps
