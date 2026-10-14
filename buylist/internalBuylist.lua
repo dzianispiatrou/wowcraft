@@ -11,6 +11,7 @@ INTERNAL_BUYLIST = {
     [33470] = 9800.000000000002,  --Frostweave Cloth
     [41510] = 49000,  --Bolt of Frostweave
     [41511] = 190000,  --Bolt of Imbued Frostweave
+    [41595] = 422500,  --Spellweave
     [34052] = 405000,  --Dream Shard
     [34054] = 46000,  --Infinite Dust
     [34057] = 500000,  --Abyss Crystal
