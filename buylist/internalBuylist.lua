@@ -1,6 +1,7 @@
 INTERNAL_BUYLIST = {
     [36860] = 327500,  --Eternal Fire
     [35627] = 327500,  --Eternal Shadow
+    [35625] = 225000,  --Eternal Life
     [35624] = 160000,  --Eternal Earth
     [35622] = 160000,  --Eternal Water
     [41163] = 460000,  --Titanium Bar
@@ -13,7 +14,7 @@ INTERNAL_BUYLIST = {
     [41511] = 190000,  --Bolt of Imbued Frostweave
     [41595] = 422500,  --Spellweave
     [41593] = 422500,  --Ebonweave
-    [41594] = 95000,  --Moonshroud
+    [41594] = 320000,  --Moonshroud
     [34052] = 405000,  --Dream Shard
     [34054] = 46000,  --Infinite Dust
     [34057] = 500000,  --Abyss Crystal
