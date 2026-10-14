@@ -21,6 +21,7 @@ INTERNAL_BUYLIST = {
     [32227] = 60000,  --shit gems
     [32231] = 60000,  --shit gems
     [32229] = 60000,  --shit gems
+    [32230] = 60000,  --shit gems
     [44499] = 30000000,  -- Salvaged Iron Golem Parts
     [44501] = 10000000,  --Goblin-machined Piston
     [44500] = 15000000,  --Elementium-plated Exhaust Pipe
