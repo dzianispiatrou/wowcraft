@@ -18,6 +18,7 @@ INTERNAL_BUYLIST = {
     [44128] = 1540000,  --Arctic Fur
     [36919] = 1600000,  --Cardinal Ruby
     [32249] = 60000,  --shit gems
+    [32228] = 60000,  --shit gems
     [32227] = 60000,  --shit gems
     [32231] = 60000,  --shit gems
     [32229] = 60000,  --shit gems
