@@ -34,6 +34,7 @@ INTERNAL_BUYLIST = {
     [44500] = 15000000,  --Elementium-plated Exhaust Pipe
     [40533] = 50000,  --Walnut Stock
     [38426] = 24000,  --Eternium Thread
+    [45087] = 2560000,  --Runed Orb
     [6948] = 24000000,  --Coin
     [40211] = 300000,  --Potion of Speed
     [40212] = 500000,  --Potion of Wild Magic
