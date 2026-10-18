@@ -23,6 +23,7 @@ INTERNAL_BUYLIST = {
     [41593] = 422500,  --Ebonweave
     [41594] = 320000,  --Moonshroud
     [34052] = 405000,  --Dream Shard
+    [34053] = 0,  --Small Dream Shard
     [34054] = 46000,  --Infinite Dust
     [34057] = 680000,  --Abyss Crystal
     [33567] = 5133.333333333334,  --Borean Leather Scraps
