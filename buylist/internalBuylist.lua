@@ -9,6 +9,7 @@ INTERNAL_BUYLIST = {
     [37703] = 32750,  --Crystallized Shadow
     [37704] = 22500,  --Crystallized Life
     [37701] = 16000,  --Crystallized Earth
+    [37700] = 20000,  --Crystallized Air
     [41163] = 460000,  --Titanium Bar
     [36910] = 230000,  --Titanium Ore
     [36913] = 67274.99999999999,  --Saronite Bar
