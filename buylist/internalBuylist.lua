@@ -5,6 +5,7 @@ INTERNAL_BUYLIST = {
     [35624] = 160000,  --Eternal Earth
     [35623] = 200000,  --Eternal Air
     [35622] = 160000,  --Eternal Water
+    [37702] = 32750,  --Crystallized Fire
     [41163] = 460000,  --Titanium Bar
     [36910] = 230000,  --Titanium Ore
     [36913] = 67274.99999999999,  --Saronite Bar
