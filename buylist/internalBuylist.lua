@@ -30,6 +30,7 @@ INTERNAL_BUYLIST = {
     [33568] = 25666.666666666668,  --Borean Leather
     [38425] = 154000,  --Heavy Borean Leather
     [44128] = 1540000,  --Arctic Fur
+    [38557] = 100000,  --Icy Dragonscale
     [36919] = 1700000,  --Cardinal Ruby
     [32249] = 60000,  --shit gems
     [32228] = 60000,  --shit gems
