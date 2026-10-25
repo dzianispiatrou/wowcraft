@@ -53,6 +53,6 @@ INTERNAL_BUYLIST = {
     [46376] = 830000,  --Flask of the Frost Wyrm
     [46379] = 1050000,  --Flask of Stoneblood
     [40199] = 30000,  --Pygmy Suckerfish
-    [42545] = 200000,  --Runic Mana Injector
-    [33448] = 200000,  --Runic Mana Potion
+    [42545] = 190000,  --Runic Mana Injector
+    [33448] = 190000,  --Runic Mana Potion
 }
