@@ -46,6 +46,7 @@ INTERNAL_BUYLIST = {
     [38426] = 24000,  --Eternium Thread
     [43102] = 640000,  --Frozen Orb
     [45087] = 2560000,  --Runed Orb
+    [49908] = 3200000,  --Primordial Saronite
     [6948] = 26000000,  --Coin
     [40211] = 300000,  --Potion of Speed
     [40212] = 500000,  --Potion of Wild Magic
