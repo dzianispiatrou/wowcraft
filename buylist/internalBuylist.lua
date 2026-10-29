@@ -66,5 +66,5 @@ INTERNAL_BUYLIST = {
     [40199] = 30000,  --Pygmy Suckerfish
     [42546] = 5000,  --Mana Injector Kit
     [33448] = 190000,  --Runic Mana Potion
-    [42545] = 190000,  --Runic Mana Potion
+    [42545] = 190000,  --Runic Mana Injector
 }
