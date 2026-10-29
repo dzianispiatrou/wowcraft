@@ -42,6 +42,7 @@ INTERNAL_BUYLIST = {
     [36928] = 500000,  --Dreadstone
     [36784] = 65000,  --Siren's Tear
     [36923] = 150000,  --Chalcedony
+    [36932] = 100000,  --Dark Jade
     [32249] = 60000,  --shit gems
     [32228] = 60000,  --shit gems
     [32227] = 60000,  --shit gems
