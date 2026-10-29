@@ -35,6 +35,7 @@ INTERNAL_BUYLIST = {
     [38557] = 90000,  --Icy Dragonscale
     [38558] = 17500,  --Nerubian Chitin
     [36919] = 2000000,  --Cardinal Ruby
+    [36934] = 220000,  --Eye of Zul
     [36925] = 550000,  --Majestic Zircon
     [36922] = 1200000,  --King's Amber
     [36931] = 1000000,  --Ametrine
