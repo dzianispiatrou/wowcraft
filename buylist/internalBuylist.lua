@@ -36,6 +36,7 @@ INTERNAL_BUYLIST = {
     [38558] = 17500,  --Nerubian Chitin
     [36919] = 2000000,  --Cardinal Ruby
     [36922] = 1200000,  --King's Amber
+    [36931] = 1000000,  --Ametrine
     [36923] = 150000,  --Chalcedony
     [32249] = 60000,  --shit gems
     [32228] = 60000,  --shit gems
