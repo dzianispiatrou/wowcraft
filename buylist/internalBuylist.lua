@@ -26,6 +26,7 @@ INTERNAL_BUYLIST = {
     [34053] = 135000,  --Small Dream Shard
     [34054] = 46000,  --Infinite Dust
     [34057] = 680000,  --Abyss Crystal
+    [34055] = 100000,  --Greater Cosmic Essence
     [33567] = 5033.333333333333,  --Borean Leather Scraps
     [33568] = 25166.666666666668,  --Borean Leather
     [38425] = 151000,  --Heavy Borean Leather
