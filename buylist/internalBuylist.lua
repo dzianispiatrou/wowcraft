@@ -32,6 +32,7 @@ INTERNAL_BUYLIST = {
     [44128] = 1540000,  --Arctic Fur
     [38557] = 90000,  --Icy Dragonscale
     [36919] = 2000000,  --Cardinal Ruby
+    [36922] = 1200000,  --King's Amber
     [36923] = 150000,  --Chalcedony
     [32249] = 60000,  --shit gems
     [32228] = 60000,  --shit gems
