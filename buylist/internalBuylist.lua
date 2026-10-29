@@ -40,6 +40,7 @@ INTERNAL_BUYLIST = {
     [36922] = 1200000,  --King's Amber
     [36931] = 1000000,  --Ametrine
     [36928] = 500000,  --Dreadstone
+    [36784] = 65000,  --Siren's Tear
     [36923] = 150000,  --Chalcedony
     [32249] = 60000,  --shit gems
     [32228] = 60000,  --shit gems
