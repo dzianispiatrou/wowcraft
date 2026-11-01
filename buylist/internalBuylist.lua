@@ -54,6 +54,7 @@ INTERNAL_BUYLIST = {
     [44500] = 15000000,  --Elementium-plated Exhaust Pipe
     [40533] = 50000,  --Walnut Stock
     [38426] = 24000,  --Eternium Thread
+    [47556] = 1500000,  --Crusader Orb
     [43102] = 640000,  --Frozen Orb
     [45087] = 2560000,  --Runed Orb
     [49908] = 3200000,  --Primordial Saronite
