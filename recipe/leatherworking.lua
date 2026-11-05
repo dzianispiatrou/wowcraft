@@ -1,4 +1,8 @@
 LEATHERWORKING = {
+    [44448] = {
+        [38558] = 20,
+        [38425] = 2
+    },
     [47581] = { -- Bracers of Swift Death
         [38425] = 20,  -- Heavy Borean Leather
         [35627] = 12,  -- Eternal Shadow
