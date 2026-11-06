@@ -1,24 +1,24 @@
 COIN = {
     [45862] = { -- Bold Stormjewel
-        [6948] = 0.5
+        [6948] = 0.4
     },
     [45882] = { -- Brilliant Stormjewel
-        [6948] = 0.25
+        [6948] = 0.2
     },
     [45987] = { -- Rigid Stormjewel
-        [6948] = 0.5
+        [6948] = 0.4
     },
     [45883] = { -- Runed Stormjewel
-        [6948] = 0.5
+        [6948] = 0.4
     },
     [45880] = { -- Solid Stormjewel
-        [6948] = 0.25
+        [6948] = 0.2
     },
     [45881] = { -- Sparkling Stormjewel
-        [6948] = 0.05
+        [6948] = 0.04
     },
     [45879] = { -- Delicate Stormjewel
-        [6948] = 0.25
+        [6948] = 0.2
     },
     [45994] = { -- Lost Ring
         [6948] = 6
