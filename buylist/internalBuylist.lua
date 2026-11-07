@@ -34,6 +34,7 @@ INTERNAL_BUYLIST = {
     [44128] = 1510000,  --Arctic Fur
     [38557] = 75000,  --Icy Dragonscale
     [38558] = 20000,  --Nerubian Chitin
+    [38561] = 65000,  --Jormungar Scale
     [36919] = 2000000,  --Cardinal Ruby
     [36934] = 220000,  --Eye of Zul
     [36925] = 550000,  --Majestic Zircon
