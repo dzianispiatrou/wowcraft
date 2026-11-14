@@ -71,4 +71,5 @@ INTERNAL_BUYLIST = {
     [42545] = 190250,  --Runic Mana Injector
     [37567] = 100000,  --Healing Injector Kit
     [33447] = 20000,  --Runic Healing Potion
+    [41166] = 25000,  --Runic Healing Injector
 }
